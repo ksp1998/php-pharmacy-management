@@ -113,24 +113,6 @@ function showEditOptionsRow($seq_no, $row) {
       </button>
     </td>
   </tr>
-    <!--
-    <td>
-      <input type="text" class="form-control" value="<?php //echo $row['NAME']; ?>" placeholder="Medicine Name" id="medicine_name" onblur="notNull(this.value, 'medicine_name_error');">
-      <code class="text-danger small font-weight-bold float-right" id="medicine_name_error" style="display: none;"></code>
-    </td>
-    <td>
-      <input type="text" class="form-control" value="<?php //echo $row['PACKING']; ?>" placeholder="Packing" id="packing" onblur="notNull(this.value, 'pack_error');">
-      <code class="text-danger small font-weight-bold float-right" id="pack_error" style="display: none;"></code>
-    </td>
-    <td>
-      <input type="text" class="form-control" value="<?php //echo $row['GENERIC_NAME']; ?>" placeholder="Generic Name" id="generic_name" onblur="notNull(this.value, 'generic_name_error');">
-      <code class="text-danger small font-weight-bold float-right" id="generic_name_error" style="display: none;"></code>
-    </td>
-    <td>
-      <input type="text" class="form-control" value="<?php //echo $row['SUPPLIER_NAME']; ?>" placeholder="Supplier Name" id="suppliers_name" onblur="notNull(this.value, 'supplier_name_error');">
-      <code class="text-danger small font-weight-bold float-right" id="supplier_name_error" style="display: none;"></code>
-    </td>
-  </tr>
   <?php
 }
 

@@ -21,7 +21,7 @@
       <div class="modal-dialog">
       	<div class="modal-content">
       		<div class="modal-header" style="background-color: #ff5252; color: white">
-            <div class="font-weight-bold">Add New Manufacturer</div>
+            <div class="font-weight-bold">Add New Supplier</div>
       			<button class="close" style="outline: none;" onclick="document.getElementById('add_new_supplier_model').style.display = 'none';"><i class="fa fa-close"></i></button>
       		</div>
       		<div class="modal-body">
@@ -59,7 +59,7 @@
 
             <div class="col col-md-2 form-group">
               <label class="font-weight-bold" for="">Invoice Number :</label>
-              <input type="number" class="form-control" placeholder="Invoice Number" id="invoice_number" name="invoice_number" onblur="notNull(this.value, 'invoice_number_error');">
+              <input type="number" class="form-control" placeholder="Invoice Number" id="invoice_number" name="invoice_number" onblur="notNull(this.value, 'invoice_number_error'); checkInvoice(this.value, 'invoice_number_error');">
               <code class="text-danger small font-weight-bold float-right" id="invoice_number_error" style="display: none;"></code>
             </div>
 
@@ -72,7 +72,7 @@
 
             <div class="col col-md-2 form-group">
               <label class="font-weight-bold" for="paytype">Payment Type :</label>
-              <select name="paytype" class="form-control">
+              <select id="payment_type" name="paytype" class="form-control">
               	<option value="Cash Payment">Cash Payment</option>
                 <option value="Net Banking">Net Banking</option>
                 <option value="Payment Due">Payment Due</option>
@@ -124,7 +124,7 @@
             <div class="col col-md-10"></div>
             <div class="col col-md-2 form-group float-right">
               <label class="font-weight-bold" for="">Grand Total :</label>
-              <input type="text" class="form-control" name="grand_total" disabled>
+              <input type="text" class="form-control" id="grand_total" name="grand_total" disabled>
             </div>
           </div>
 
@@ -137,6 +137,7 @@
             <div class="col col-md-5"></div>
           </div>
           <!-- closing button -->
+          <div id="purchase_acknowledgement" class="col-md-6 h5 text-success font-weight-normal text-center"></div>
 
         </div>
         <!-- form content end -->

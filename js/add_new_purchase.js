@@ -1,11 +1,13 @@
 var rows = 0;
 
+//isSupplier = false;
+
 class MedicineStock {
   constructor(name, batch_id, expiry_date, quantity, mrp, rate) {
     this.name = name;
     this.batch_id = batch_id;
     this.expiry_date = expiry_date;
-    this.quantity;
+    this.quantity = quantity;
     this.mrp = mrp;
     this.rate = rate;
   }
@@ -19,8 +21,6 @@ class NewMedicine {
     this.supplier_name = supplier_name;
   }
 }
-
-
 
 function addRow() {
   if(typeof addRow.counter == 'undefined')
@@ -55,34 +55,79 @@ function removeRow(row_id) {
 function isSupplier(name) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    if(xhttp.readyState = 4 && xhttp.status == 200) {
-      alert(xhttp.responseText);
-      if(xhttp.responseText.trim() == "true")
-        return true;
-    }
+    if(xhttp.readyState = 4 && xhttp.status == 200)
+      xhttp.responseText;
   };
   xhttp.open("GET", "php/add_new_purchase.php?action=is_supplier&name=" + name, false);
   xhttp.send();
+  return xhttp.responseText;
+}
+
+function checkInvoice(invoice_number, error) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if(xhttp.readyState = 4 && xhttp.status == 200)
+      xhttp.responseText;
+  };
+  xhttp.open("GET", "php/add_new_purchase.php?action=is_invoice&invoice_number=" + invoice_number, false);
+  xhttp.send();
+  if(xhttp.responseText == "true") {
+    document.getElementById(error).style.display = "block";
+    document.getElementById(error).innerHTML = "already added!";
+    return true;
+  }
+  else
+    document.getElementById(error).style.display = "none";
+  return false;
+}
+
+function isNewMedicine(name, packing) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if(xhttp.readyState = 4 && xhttp.status == 200)
+      xhttp.responseText;
+  };
+  xhttp.open("GET", "php/add_new_purchase.php?action=is_new_medicine&name=" + name + "&packing=" + packing, false);
+  xhttp.send();
+  return xhttp.responseText;
+}
+
+function getAmount(row_number) {
+  var qty = document.getElementById("quantity_" + row_number).value;
+  var rate = document.getElementById("rate_" + row_number).value;
+  document.getElementById("amount_" + row_number).value = qty * rate;
+
+  var parent = document.getElementById('purchase_medicine_list_div');
+  var row_count = parent.childElementCount;
+  var medicine_info = parent.children;
+  var total = 0;
+  var amount;
+  for(var i = 1; i < row_count; i++) {
+    amount = Number.parseFloat(medicine_info[i].children[0].children[7].children[0].children[0].value);
+    total += amount;
+  }
+  document.getElementById("grand_total").value = total;
 }
 
 function addPurchase() {
   var suppliers_name = document.getElementById('suppliers_name');
   var invoice_number = document.getElementById('invoice_number');
+  var payment_type = document.getElementById('payment_type');
   var invoice_date = document.getElementById('invoice_date');
-
-  if(isSupplier(suppliers_name.value))
-    alert("true");
-  else
-    alert("false");
 
   if(!notNull(suppliers_name.value, "supplier_name_error"))
     suppliers_name.focus();
-  //else if(!isSupplier(suppliers_name.value, "supplier_name_error")) {
-
-  //}
-    //suppliers_name.focus();
+  else if(isSupplier(suppliers_name.value) == "false") {
+    document.getElementById("supplier_name_error").style.display = "block";
+    document.getElementById("supplier_name_error").innerHTML = "Supplier doesn't exists!";
+    suppliers_name.focus();
+  }
   else if(!notNull(invoice_number.value, 'invoice_number_error'))
     invoice_number.focus();
+
+  else if(checkInvoice(invoice_number.value, 'invoice_number_error'))
+    invoice_number.focus();
+
   else if(!checkDate(invoice_date.value, 'date_error'))
     invoice_date.focus();
   else {
@@ -122,6 +167,10 @@ function addPurchase() {
       var amount = elements[0].children[7].children[0].children[0];
 
       var generic_name = elements[2].children[1].children[0];
+      var generic_name_error = elements[2].children[1].children[1];
+      generic_name_error.style.display = "none";
+
+      var grand_total = document.getElementById("grand_total");
 
       var flag = false;
       if(!notNull(medicine_name.value, medicine_name_error.getAttribute('id')))
@@ -150,41 +199,59 @@ function addPurchase() {
         rate_error.innerHTML = "Rate must be less than MRP!";
         rate.focus();
       }
+      else if(isNewMedicine(medicine_name.value, packing.value) == "true" && generic_name.value == "") {
+        generic_name_error.style.display = "block";
+        generic_name_error.innerHTML = "Required for new Medicine!";
+        generic_name.focus();
+      }
       else {
+        //alert("perfect");
         flag = true;
         //alert("row perfect...");
         // go ahead and store row date
         medicineStockRow[i-1] = new MedicineStock(medicine_name.value, batch_id.value, expiry_date.value, quantity.value, mrp.value, rate.value);
-        newMedicine[i-1] = new MedicineStock(medicine_name.value, packing.value, generic_name.checkValue, suppliers_name.value);
-
-
-        //alert(medicineStockRow[i-1]);
+        newMedicine[i-1] = new NewMedicine(medicine_name.value, packing.value, generic_name.value, suppliers_name.value);
       }
       if(!flag)
         return false;
     }
     //alert(medicineStockRow[1].name);
-    // insert datas
+    // insert data into table
+    for(var i = 0; i < row_count - 1; i++) {
+      if(isNewMedicine(newMedicine[i].name, newMedicine[i].packing) == "true")
+        addNewMedicine(newMedicine[i].name, newMedicine[i].packing, newMedicine[i].generic_name, newMedicine[i].supplier_name);
+      addMedicineStock(medicineStockRow[i].name, medicineStockRow[i].batch_id, medicineStockRow[i].expiry_date, medicineStockRow[i].quantity, medicineStockRow[i].mrp, medicineStockRow[i].rate, invoice_number.value);
+    }
+    addNewPurchase(suppliers_name.value, invoice_number.value, payment_type.value, invoice_date.value, grand_total.value);
   }
 }
 
-
-/*
-for(var j = 0; j < elements_count - 1; j++) {
-  var info_count = elements[j].childElementCount;
-  var info_row = elements[j].children;
-  for(var k = 0; k < info_count; k++) {
-    console.log(info_row[k].children[0].value);
-  }
-  alert(info_count);
+function addNewMedicine(name, packing, generic_name, supplier_name) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if(xhttp.readyState = 4 && xhttp.status == 200)
+      alert("New medicine " + xhttp.responseText);
+  };
+  xhttp.open("GET", "php/add_new_medicine.php?name=" + name + "&packing=" + packing + "&generic_name=" + generic_name + "&suppliers_name=" + supplier_name, false);
+  xhttp.send();
 }
-console.log(medicine_name = elements[0].children[0].children[0].value);
-console.log(packing = elements[0].children[1].children[0].value);
-console.log(batch_id = elements[0].children[2].children[0].value);
-console.log(expiry_date = elements[0].children[3].children[0].value);
-console.log(quantity = elements[0].children[4].children[0].value);
-console.log(mrp = elements[0].children[5].children[0].value);
-console.log(rate = elements[0].children[6].children[0].value);
-console.log(amount = elements[0].children[7].children[0].children[0].value);
-console.log(generic_name = elements[2].children[1].children[0].value);
-*/
+
+function addMedicineStock(name, batch_id, expiry_date, quantity, mrp, rate, invoice_number) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if(xhttp.readyState = 4 && xhttp.status == 200)
+      xhttp.responseText;
+  };
+  xhttp.open("GET", "php/add_new_purchase.php?action=add_stock&name=" + name + "&batch_id=" + batch_id + "&expiry_date=" + expiry_date + "&quantity=" + quantity + "&mrp=" + mrp + "&rate=" + rate + "&invoice_number=" + invoice_number, false);
+  xhttp.send();
+}
+
+function addNewPurchase(suppliers_name, invoice_number, payment_type, invoice_date, grand_total) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if(xhttp.readyState = 4 && xhttp.status == 200)
+      document.getElementById('purchase_acknowledgement').innerHTML = xhttp.responseText;
+  };
+  xhttp.open("GET", "php/add_new_purchase.php?action=add_new_purchase&suppliers_name=" + suppliers_name + "&invoice_number=" + invoice_number + "&payment_type=" + payment_type + "&invoice_date=" + invoice_date + "&invoice_date=" + invoice_date + "&grand_total=" + grand_total, true);
+  xhttp.send();
+}

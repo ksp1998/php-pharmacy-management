@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sidenav.css">
     <link rel="stylesheet" href="css/home.css">
+    <script src="js/suggestions.js"></script>
+    <script src="js/add_new_purchase.js"></script>
+    <script src="js/manage_purchase.js"></script>
+    <script src="js/validateForm.js"></script>
   </head>
   <body>
     <!-- including side navigations -->
@@ -28,23 +32,19 @@
 
         <!-- form content -->
         <div class="row">
-
-          <div class="row col col-md-12">
-            <div class="col-md-1">
-              <label class="font-weight-bold" for="">Search :</label>
-            </div>
-            <div class="row col-md-2 form-group">
-              <input type="number" class="form-control" id="" placeholder="By Invoice No.">
-            </div>&emsp;
-            <div class="row col-md-2 form-group">
-              <input type="text" class="form-control" id="" placeholder="By Supplier Name">
-            </div>&emsp;
-            <div class="row col-md-2 form-group">
-              <input type="number" class="form-control" id="" placeholder="By Voucher No.">
-            </div>&emsp;
-            <div class="row col-md-2 form-group">
-              <input type="date" class="form-control" id="" placeholder="By Purchase Date">
-            </div>
+          <div class="col-md-12 form-group form-inline">
+            <label class="font-weight-bold" for="">Search :&emsp;</label>
+            <input type="number" class="form-control" id="by_voucher_number" placeholder="By Voucher Number" onkeyup="searchPurchase(this.value, 'VOUCHER_NUMBER');">
+            &emsp;<input type="text" class="form-control" id="by_suppliers_name" placeholder="By Supplier Name" onkeyup="searchPurchase(this.value, 'SUPPLIER_NAME');">
+            &emsp;<input type="number" class="form-control" id="by_invoice_number" placeholder="By Invoice" onkeyup="searchPurchase(this.value, 'INVOICE_NUMBER');">
+            &emsp;<label class="font-weight-bold" for="">By Purchase Date :&emsp;</label>
+            <input type="date" class="form-control" id="by_purchase_date" onchange="searchPurchase(this.value, 'PURCHASE_DATE');">
+            &emsp;
+            <select id="payment_status" class="form-control" onchange="searchPurchase(this.value, 'PAYMENT_STATUS');">
+              <option value="DUE">DUE</option>
+              <option value="PAID">PAID</option>
+            </select>
+            &emsp;<button class="btn btn-success font-weight-bold" onclick="cancel();"><i class="fa fa-refresh"></i></button>
           </div>
 
           <div class="col col-md-12">
@@ -57,36 +57,20 @@
             		<thead>
             			<tr>
             				<th>SL.</th>
+                    <th>Voucher Number</th>
                     <th>Supplier Name</th>
             				<th>Invoice Number</th>
-            				<th>Voucher Number</th>
                     <th>Purchase Date</th>
                     <th>Total Amount</th>
                     <th>Payment Status</th>
                     <th>Action</th>
             			</tr>
             		</thead>
-            		<tbody>
-                  <tr class="odd">
-                    <td>1</td>
-                    <td>BDPL</td>
-              			<td>4363</td>
-                    <td>56</td>
-              			<td>12-03-2020</td>
-              			<td>500.00</td>
-                    <td>Due</td>
-                    <td>
-                      <a href="" class="btn btn-warning btn-sm">
-              					<i class="fa fa-fax"></i>
-              				</a>
-              				<a href="" class="btn btn-info btn-sm">
-              					<i class="fa fa-pencil"></i>
-              				</a>
-              				<a href="" class="btn btn-danger btn-sm">
-              					<i class="fa fa-trash"></i>
-              				</a>
-              			</td>
-                  </tr>
+                <tbody id="purchases_div">
+                  <?php
+                    require 'php/manage_purchase.php';
+                    showPurchases(0);
+                  ?>
             		</tbody>
             	</table>
             </div>
