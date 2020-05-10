@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sidenav.css">
     <link rel="stylesheet" href="css/home.css">
+    <script src="js/report.js"></script>
   </head>
   <body>
     <!-- including side navigations -->
@@ -29,27 +30,14 @@
         <!-- form content -->
         <div class="row">
 
-          <div class="row">
-          	<div class="col-sm-12">
-          		<div class="panel panel-default">
-          			<div class="panel-body">
-          				<form action="" class="form-inline" method="post" accept-charset="utf-8">
-                    &emsp;
-          					<div class="form-group">
-          						<label class="" for="from_date">Start Date :&emsp;</label>
-          						<input type="text" name="from_date" class="form-control datepicker hasDatepicker" id="from_date" placeholder="Start Date">
-          					</div>
-                    &emsp;
-          					<div class="form-group">
-          						<label class="" for="to_date">End Date :&emsp;</label>
-          						<input type="text" name="to_date" class="form-control datepicker hasDatepicker" id="to_date" placeholder="End Date" value="<?php echo date('Y-m-d');?>" autocomplete="off">
-          					</div>
-                    &emsp;
-          					<button type="submit" class="btn btn-success">Search</button>
-          				</form>
-          			</div>
-          		</div>
-          	</div>
+          <div class="col-md-12 form-group form-inline">
+            <label class="font-weight-bold" for="">Start Date :&emsp;</label>
+            <input type="date" class="form-control" id="start_date" onchange="showReport('purchase');">
+            &emsp;
+            <label class="font-weight-bold" for="">End Date :&emsp;</label>
+            <input type="date" class="form-control" id="end_date" onchange="showReport('purchase');">
+            &emsp;
+            <button class="btn btn-success" onclick="location.reload();"><i class="fa fa-refresh"></i></button>
           </div>
 
           <div class="col col-md-12">
@@ -57,26 +45,18 @@
           </div>
 
           <div class="col col-md-12 table-responsive">
-            <div class="table-responsive">
-            	<table class="table table-bordered table-striped table-hover">
-            		<thead>
-            			<tr>
-            				<th>Sales Date</th>
-            				<th>Invoice No</th>
-            				<th>Manufacturer  Name</th>
-            				<th>Total Amount</th>
-            			</tr>
-            		</thead>
-            		<tbody>
-            		</tbody>
-                <tfoot>
-            			<tr style="text-align: right; font-size: 24px;">
-            				<td colspan="3" style="color: green;">&nbsp; <b>Total Amount</b></td>
-            				<td style="color: red;"><b>$427.82</b></td>
-            			</tr>
-            		</tfoot>
+            <div id="print_content" class="table-responsive">
+            	<table class="table table-bordered table-striped table-hover" id="purchase_report_div">
+                <?php
+                require "php/report.php";
+                showPurchases("", "");
+                ?>
             	</table>
             </div>
+          </div>
+
+          <div class="col-md-12 text-center">
+            <button class="btn btn-primary" onclick="printReport('Purchase');">Print</button>
           </div>
 
         </div>

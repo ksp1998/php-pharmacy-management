@@ -79,7 +79,6 @@ function showEditOptionsRow($seq_no, $row) {
     </td>
     <td>
       <input type="email" class="form-control" value="<?php echo $row['EMAIL']; ?>" placeholder="Email" id="supplier_email" onblur="validateContactNumber(this.value, 'email_error');">
-      <code class="text-danger small font-weight-bold float-right" id="contact_number_error" style="display: none;"></code>
     </td>
     <td>
       <input type="number" class="form-control" value="<?php echo $row['CONTACT_NUMBER']; ?>" placeholder="Contact Number" id="supplier_contact_number" onblur="validateContactNumber(this.value, 'contact_number_error');">

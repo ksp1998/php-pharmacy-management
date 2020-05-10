@@ -40,7 +40,7 @@
             &emsp;<label class="font-weight-bold" for="">By Purchase Date :&emsp;</label>
             <input type="date" class="form-control" id="by_purchase_date" onchange="searchPurchase(this.value, 'PURCHASE_DATE');">
             &emsp;
-            <select id="payment_status" class="form-control" onchange="searchPurchase(this.value, 'PAYMENT_STATUS');">
+            <select class="form-control" onchange="searchPurchase(this.value, 'PAYMENT_STATUS');">
               <option value="DUE">DUE</option>
               <option value="PAID">PAID</option>
             </select>
@@ -56,14 +56,14 @@
             	<table class="table table-bordered table-striped table-hover">
             		<thead>
             			<tr>
-            				<th>SL.</th>
-                    <th>Voucher Number</th>
-                    <th>Supplier Name</th>
-            				<th>Invoice Number</th>
-                    <th>Purchase Date</th>
-                    <th>Total Amount</th>
-                    <th>Payment Status</th>
-                    <th>Action</th>
+            				<th style="width: 1%;">SL.</th>
+                    <th style="width: 12%;">Voucher Number</th>
+                    <th style="width: 18%;">Supplier Name</th>
+            				<th style="width: 12%;">Invoice Number</th>
+                    <th style="width: 15%;">Purchase Date</th>
+                    <th style="width: 10%;">Total Amount</th>
+                    <th style="width: 12%;">Payment Status</th>
+                    <th style="width: 12%;">Action</th>
             			</tr>
             		</thead>
                 <tbody id="purchases_div">

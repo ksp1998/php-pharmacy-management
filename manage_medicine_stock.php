@@ -37,6 +37,7 @@
             &emsp;<input type="text" class="form-control" id="by_generic_name" placeholder="By Generic Name" onkeyup="searchMedicineStock(this.value, 'GENERIC_NAME');">
             &emsp;<input type="text" class="form-control" id="by_suppliers_name" placeholder="By Supplier Name" onkeyup="searchMedicineStock(this.value, 'SUPPLIER_NAME');">
             &emsp;<button class="btn btn-danger font-weight-bold" onclick="searchMedicineStock('0', 'QUANTITY');">Out of Stock</button>
+            &emsp;<button class="btn btn-warning font-weight-bold" onclick="searchMedicineStock('', 'EXPIRY_DATE');">Expired</button>
             &emsp;<button class="btn btn-success font-weight-bold" onclick="cancel();"><i class="fa fa-refresh"></i></button>
           </div>
 
@@ -66,7 +67,12 @@
                 <tbody id="medicines_stock_div">
                   <?php
                     require 'php/manage_medicine_stock.php';
-                    showMedicinesStock("0");
+                    if(isset($_GET['out_of_stock']))
+                      echo "<script>searchMedicineStock('0', 'QUANTITY');</script>";
+                    else if(isset($_GET['expired']))
+                      echo "<script>searchMedicineStock('', 'EXPIRY_DATE');</script>";
+                    else
+                      showMedicinesStock("0");
                   ?>
             		</tbody>
             	</table>

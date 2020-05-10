@@ -59,6 +59,10 @@ function checkExpiry(date, error) {
     result.innerHTML = "Please enter date in mm/yy format!";
   else if(date.slice(0, 2) < 1 || date.slice(0, 2) > 12)
     result.innerHTML = "Invalid month!";
+  else if(new Date("20" + date.slice(3, 5), date.slice(0, 2)) < new Date()) {
+    result.innerHTML = "Expired Medicine!";
+    return -1;
+  }
   else {
     result.style.display = "none";
     return true;

@@ -26,7 +26,7 @@ function updatePurchase(id) {
   var invoice_date = document.getElementById("invoice_date");
   var grand_total = document.getElementById("grand_total");
   var payment_status = document.getElementById("payment_status");
-
+  //alert(payment_status.value);
   //if(!notNull(suppliers_name.value, "supplier_name_error"))
     //suppliers_name.focus();
   //else if(isSupplier(suppliers_name.value) == "false") {

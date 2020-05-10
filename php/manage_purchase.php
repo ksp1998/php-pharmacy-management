@@ -20,7 +20,7 @@
       $suppliers_name = ucwords($_GET["suppliers_name"]);
       $invoice_date = $_GET["invoice_date"];
       $grand_total = $_GET["grand_total"];
-      $payment_status = ucwords($_GET["payment_status"]);
+      $payment_status = $_GET["payment_status"];
       updatePurchase($id, $suppliers_name, $invoice_date, $grand_total, $payment_status);
     }
 
@@ -110,6 +110,7 @@ function showEditOptionsRow($seq_no, $row) {
 
 function updatePurchase($id, $suppliers_name, $invoice_date, $grand_total, $payment_status) {
   require "db_connection.php";
+  //echo $payment_status;
   $query = "UPDATE purchases SET SUPPLIER_NAME = '$suppliers_name', PURCHASE_DATE = '$invoice_date', TOTAL_AMOUNT = $grand_total, PAYMENT_STATUS = '$payment_status' WHERE VOUCHER_NUMBER = $id";
   $result = mysqli_query($con, $query);
   if(!empty($result))

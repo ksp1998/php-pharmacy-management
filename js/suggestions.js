@@ -16,18 +16,21 @@ function clearSuggestions(id) {
 
 function suggestionClick(value, id) {
   document.getElementById(id + "s_name").value = value;
-  if(id == "customer")
-    fillFields(value);
+  if(id == "customer") {
+    console.log(value + " = value & id = " + id);
+    fillCustomerDetails(value);
+  }
   clearSuggestions(id);
   notNull(value, id + '_name_error');
 }
 
-function fillFields(name) {
-  getField("customers_address", name);
-  getField("customers_contact_number", name);
+function fillCustomerDetails(name) {
+  console.log(name);
+  getCustomerDetail("customers_address", name);
+  getCustomerDetail("customers_contact_number", name);
 }
 
-function getField(id, name) {
+function getCustomerDetail(id, name) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if(xhttp.readyState = 4 && xhttp.status == 200)

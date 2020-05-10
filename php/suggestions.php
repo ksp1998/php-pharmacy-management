@@ -27,7 +27,7 @@
     while($row = mysqli_fetch_array($result))
       echo '<input type="button" class="list-group-item list-group-item-action" value="'.$row['NAME'].'" style="padding: 5px; outline: none;" onclick="suggestionClick(this.value, \''.$action.'\');">';
     //echo '<input type="button" class="list-group-item list-group-item-action bg-danger text-center text-light" style="padding: 5px;" value="Close" onclick="clearSuggestions(\''.$action.'\');">';
-}
+  }
 
   function getValue($con, $action, $column) {
     $name = $_GET['name'];

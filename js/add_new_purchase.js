@@ -182,11 +182,17 @@ function addPurchase() {
       else if(!notNull(batch_id.value, batch_id_error.getAttribute('id')))
         batch_id.focus();
 
-      else if(!checkExpiry(expiry_date.value, expiry_date_error.getAttribute('id')))
+      else if(!checkExpiry(expiry_date.value, expiry_date_error.getAttribute('id')) || checkExpiry(expiry_date.value, expiry_date_error.getAttribute('id')) == -1)
         expiry_date.focus();
 
       else if(!checkQuantity(quantity.value, quantity_error.getAttribute('id')))
         quantity.focus();
+
+      else if(quantity.value == 0) {
+        quantity_error.style.display = "block";
+        quantity_error.innerHTML = "Increase quantity or remove row!"
+        quantity.focus();
+      }
 
       else if(!checkValue(mrp.value, mrp_error.getAttribute('id')))
         mrp.focus();

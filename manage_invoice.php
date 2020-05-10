@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sidenav.css">
     <link rel="stylesheet" href="css/home.css">
+    <script src="js/manage_invoice.js"></script>
   </head>
   <body>
     <!-- including side navigations -->
@@ -29,20 +30,13 @@
         <!-- form content -->
         <div class="row">
 
-          <div class="row">
-          	<div class="col-sm-12">
-          		<div class="panel panel-default">
-          			<div class="panel-body">
-          				<form action="" class="form-inline" method="post" accept-charset="utf-8">
-                    &emsp;
-          					<div class="form-group">
-          						<label class="font-weight-bold" for="">Search :&emsp;</label>
-          						<input type="text" class="form-control" id="" placeholder="Search Customer">
-          					</div>
-          				</form>
-          			</div>
-          		</div>
-          	</div>
+          <div class="col-md-12 form-group form-inline">
+            <label class="font-weight-bold" for="">Search :&emsp;</label>
+            <input type="number" class="form-control" id="by_invoice_number" placeholder="By Invoice Nuber" onkeyup="searchInvoice(this.value, 'INVOICE_NUMBER');">
+            &emsp;<input type="text" class="form-control" id="by_customer_name" placeholder="By Customer Name" onkeyup="searchInvoice(this.value, 'NAME');">
+            &emsp;<label class="font-weight-bold" for="">By Invoice Date :&emsp;</label>
+            <input type="date" class="form-control" id="by_date" onchange="searchInvoice(this.value, 'INVOICE_DATE');">
+            &emsp;<button class="btn btn-success font-weight-bold" onclick="refresh();"><i class="fa fa-refresh"></i></button>
           </div>
 
           <div class="col col-md-12">
@@ -60,71 +54,17 @@
             				<th>Customer Name</th>
             				<th>Date</th>
                     <th>Total Amount</th>
+                    <th>Total Discount</th>
+                    <th>Net Total</th>
                     <th>Action</th>
             			</tr>
             		</thead>
-            		<tbody>
-                  <tr class="odd">
-                    <td>1</td>
-              			<td>1011</td>
-              			<td>Walking Customer</td>
-              			<td>2020-05-03</td>
-              			<td class=" total_sale">550.00</td>
-                    <td>
-              				<a href="" class="btn btn-warning btn-sm">
-              					<i class="fa fa-fax"></i>
-              				</a>
-              				<a href="" class="btn btn-info btn-sm">
-              					<i class="fa fa-pencil"></i>
-              				</a>
-              				<a href="" class="btn btn-danger btn-sm">
-              					<i class="fa fa-trash"></i>
-              				</a>
-              			</td>
-                  </tr>
-                  <tr class="even">
-                    <td>2</td>
-              			<td>1011</td>
-              			<td>Walking Customer</td>
-              			<td>2020-05-03</td>
-              			<td class=" total_sale">550.00</td>
-                    <td>
-              				<a href="" class="btn btn-warning btn-sm">
-              					<i class="fa fa-fax"></i>
-              				</a>
-              				<a href="" class="btn btn-info btn-sm">
-              					<i class="fa fa-pencil"></i>
-              				</a>
-              				<a href="" class="btn btn-danger btn-sm">
-              					<i class="fa fa-trash"></i>
-              				</a>
-              			</td>
-                  </tr>
-                  <tr class="odd">
-                    <td>3</td>
-              			<td>1011</td>
-              			<td>Walking Customer</td>
-              			<td>2020-05-03</td>
-              			<td class=" total_sale">550.00</td>
-              			<td>
-              				<a href="" class="btn btn-warning btn-sm">
-              					<i class="fa fa-fax"></i>
-              				</a>
-              				<a href="" class="btn btn-info btn-sm">
-              					<i class="fa fa-pencil"></i>
-              				</a>
-              				<a href="" class="btn btn-danger btn-sm">
-              					<i class="fa fa-trash"></i>
-              				</a>
-              			</td>
-                  </tr>
-            		</tbody>
-                <tfoot>
-            			<tr style="text-align: right; font-size: 24px;">
-            				<td colspan="4" style="color: green;">&nbsp; <b>Total Amount</b></td>
-            				<td style="color: red;"><b>$427.82</b></td>
-            			</tr>
-            		</tfoot>
+                <tbody id="invoices_div">
+                  <?php
+                    require 'php/manage_invoice.php';
+                    showInvoices();
+                  ?>
+                </tbody>
             	</table>
             </div>
           </div>

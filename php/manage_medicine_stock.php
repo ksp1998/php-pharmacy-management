@@ -128,15 +128,32 @@ function searchMedicineStock($text, $column) {
   require "db_connection.php";
   if($con) {
     $seq_no = 0;
-    if($column == 'QUANTITY')
+
+    if($column == "EXPIRY_DATE")
+      $query = "SELECT * FROM medicines INNER JOIN medicines_stock ON medicines.NAME = medicines_stock.NAME";
+    else if($column == 'QUANTITY')
       $query = "SELECT * FROM medicines INNER JOIN medicines_stock ON medicines.NAME = medicines_stock.NAME WHERE medicines_stock.$column = 0";
     else
       $query = "SELECT * FROM medicines INNER JOIN medicines_stock ON medicines.NAME = medicines_stock.NAME WHERE UPPER(medicines.$column) LIKE '%$text%'";
 
     $result = mysqli_query($con, $query);
-    while($row = mysqli_fetch_array($result)) {
-      $seq_no++;
-      showMedicineStockRow($seq_no, $row);
+
+    if($column == 'EXPIRY_DATE') {
+      while($row = mysqli_fetch_array($result)) {
+        $expiry_date = $row['EXPIRY_DATE'];
+        if(substr($expiry_date, 3) < date('y'))
+          showMedicineStockRow($seq_no, $row);
+        else if(substr($expiry_date, 3) == date('y')) {
+          if(substr($expiry_date, 0, 2) < date('m'))
+            showMedicineStockRow($seq_no, $row);
+        }
+      }
+    }
+    else {
+      while($row = mysqli_fetch_array($result)) {
+        $seq_no++;
+        showMedicineStockRow($seq_no, $row);
+      }
     }
   }
 }
