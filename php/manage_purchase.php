@@ -58,9 +58,11 @@
       <td><?php echo $row['TOTAL_AMOUNT']; ?></td>
       <td><?php echo $row['PAYMENT_STATUS']; ?></td>
       <td>
+        <!--
         <button class="btn btn-warning btn-sm" onclick="printPurchase(<?php echo $row['VOUCHER_NUMBER']; ?>);">
           <i class="fa fa-fax"></i>
         </button>
+      -->
         <button href="" class="btn btn-info btn-sm" onclick="editPurchase(<?php echo $row['VOUCHER_NUMBER']; ?>);">
           <i class="fa fa-pencil"></i>
         </button>

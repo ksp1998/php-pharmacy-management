@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/home.css">
     <script src="js/manage_customer.js"></script>
     <script src="js/validateForm.js"></script>
+    <script src="js/restrict.js"></script>
   </head>
   <body style="max-height: 100%;">
     <!-- including side navigations -->

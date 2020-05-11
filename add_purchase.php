@@ -15,6 +15,7 @@
     <script type="text/javascript" src="js/suggestions.js"></script>
     <script type="text/javascript" src="js/add_new_purchase.js"></script>
     <script type="text/javascript" src="js/validateForm.js"></script>
+    <script src="js/restrict.js"></script>
   </head>
   <body>
     <div id="add_new_supplier_model">
@@ -137,7 +138,7 @@
             <div class="col col-md-5"></div>
           </div>
           <!-- closing button -->
-          <div id="purchase_acknowledgement" class="col-md-6 h5 text-success font-weight-normal text-center"></div>
+          <div id="purchase_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;"</div>
 
         </div>
         <!-- form content end -->

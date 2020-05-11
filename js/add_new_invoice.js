@@ -258,8 +258,8 @@ function addInvoice() {
         medicine_name.focus();
       }
 
-      //else if(checkExpiry(expiry_date, medicine_name_error.getAttribute('id')) == -1)
-        //medicine_name.focus();
+      else if(!checkExpiry(expiry_date.value, medicine_name_error.getAttribute('id')) || checkExpiry(expiry_date.value, medicine_name_error.getAttribute('id')) == -1)
+        medicine_name.focus();
 
       else if(isAvailable == -1) {
         medicine_name_error.style.display = "block";

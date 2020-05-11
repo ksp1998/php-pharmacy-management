@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/sidenav.css">
     <link rel="stylesheet" href="css/home.css">
     <script src="js/report.js"></script>
+    <script src="js/restrict.js"></script>
   </head>
   <body>
     <!-- including side navigations -->

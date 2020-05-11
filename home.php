@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="images/icon.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/sidenav.css">
     <link rel="stylesheet" href="css/home.css">
+    <script src="js/restrict.js"></script>
   </head>
   <body>
     <?php include "sections/sidenav.html"; ?>

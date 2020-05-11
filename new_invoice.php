@@ -15,6 +15,7 @@
     <script src="js/add_new_invoice.js"></script>
     <script src="js/manage_invoice.js"></script>
     <script src="js/validateForm.js"></script>
+    <script src="js/restrict.js"></script>
   </head>
   <body>
     <div id="add_new_customer_model">
@@ -163,7 +164,7 @@
             </div>
           </div>
 
-          <div id="invoice_acknowledgement" class="col-md-6 h5 text-success font-weight-normal text-center"></div>
+          <div id="invoice_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;"</div>
 
         </div>
         <!-- form content end -->

@@ -15,6 +15,7 @@
     <script src="js/add_new_purchase.js"></script>
     <script src="js/manage_purchase.js"></script>
     <script src="js/validateForm.js"></script>
+    <script src="js/restrict.js"></script>
   </head>
   <body>
     <!-- including side navigations -->

@@ -62,15 +62,17 @@ function validateAndSetup() {
   }
   else {
     document.getElementById('confirm_password_error').style.display = "none";
-    
-    var xhttp = new XMLHttpRequest();
-  	xhttp.onreadystatechange = function() {
-  		if(xhttp.readyState = 4 && xhttp.status == 200)
-  			alert(xhttp.responseText);
-  	};
-  	xhttp.open("GET", "php/validateCredentials.php?action=store_admin_info&pharmacy_name=" + pharmacy_name.value + "&address=" + address.value + "&email=" + email.value + "&contact_number=" + contact_number.value + "&username=" + username.value + "&password=" + password.value, true);
-  	xhttp.send();
-    return true;
+    var confirmation = prompt("Please type 'CONFIRM' below to complete setup!");
+    if(confirmation == "CONFIRM") {
+      var xhttp = new XMLHttpRequest();
+    	xhttp.onreadystatechange = function() {
+    		if(xhttp.readyState = 4 && xhttp.status == 200)
+    			alert(xhttp.responseText);
+    	};
+    	xhttp.open("GET", "php/validateCredentials.php?action=store_admin_info&pharmacy_name=" + pharmacy_name.value + "&address=" + address.value + "&email=" + email.value + "&contact_number=" + contact_number.value + "&username=" + username.value + "&password=" + password.value, true);
+    	xhttp.send();
+      return true;
+    }
   }
   return false;
 }
