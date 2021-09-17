@@ -3,7 +3,7 @@ Pharmacy Management is a web application created with HTML, CSS, Bootstrap, Java
 
 ### Here are few screen shots of an application
 
-####1. SETUP AND LOGIN
+#### 1) SETUP AND LOGIN
 First of all, the admin has to fill in necessary details for the pharmacy in order to use the system. Below Screen shows the setup page which validates and submitted: -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss1.0.png" alt="Setup Page Screen 1" width="800" />
@@ -20,7 +20,7 @@ After Successful Login Admin will see Dashboard where he/she can see short overv
 </p>
 
 
-####2. NEW CUSTOMER AND MANAGE CUSTOMER
+#### 2) NEW CUSTOMER AND MANAGE CUSTOMER
 Below pages add new customer and manage their information with validation: -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss4.0.png" alt="New Customer Screen" width="800" />
@@ -28,7 +28,7 @@ Below pages add new customer and manage their information with validation: -
 </p>
 
 
-####3. NEW MEDICINE AND MANAGE MEDICINES 
+#### 3) NEW MEDICINE AND MANAGE MEDICINES 
 Below pages add new medicine and manage information with validation -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss6.0.png" alt="New Medicine Screen" width="800" />
@@ -36,7 +36,7 @@ Below pages add new medicine and manage information with validation -
 </p>
 
 
-####4. MANAGE MEDICINES STOCK 
+#### 4) MANAGE MEDICINES STOCK 
 Below page edit the medicines stock with validation: -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss8.0.png" alt="Edit Medicine Stock Screen" width="800" />
@@ -48,7 +48,7 @@ Out of Stock Medicines: -
 </p>
 
 
-####5. NEW SUPPLIER AND MANAGE SUPPLIERS
+#### 5) NEW SUPPLIER AND MANAGE SUPPLIERS
 Below pages add new supplier and manage their information with validation -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss10.0.png" alt="New Supplier Screen" width="800" />
@@ -56,7 +56,7 @@ Below pages add new supplier and manage their information with validation -
 </p>
 
 
-####6. GENERATE & MANAGE INVOICES
+#### 6) GENERATE & MANAGE INVOICES
 Below pages add new invoices and manage information and prints invoices with validation -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss12.0.png" alt="New Invoice Screen" width="800" />
@@ -69,7 +69,7 @@ Printing Customer invoice -
 </p>
 
 
-####7. NEW PURCHASE AND MANAGE PURCHASES
+#### 7) NEW PURCHASE AND MANAGE PURCHASES
 Below pages add new purchase and manage information with validation -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss15.0.png" alt="New Purchase Screen" width="800" />
@@ -77,7 +77,7 @@ Below pages add new purchase and manage information with validation -
 </p>
 
 
-####8. SHOWS SALES AND PURCHASE REPORT
+#### 8) SHOWS SALES AND PURCHASE REPORT
 Below pages shows sales and purchase report between 2 dates and print report -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss17.0.png" alt="Sales Report Screen" width="800" />
@@ -87,7 +87,7 @@ Below pages shows sales and purchase report between 2 dates and print report -
 </p>
 
 
-####9. CHANGE ADMIN DETAILS AND CHANGE PASSWORD
+#### 9) CHANGE ADMIN DETAILS AND CHANGE PASSWORD
 Below pages changes pharmacy details including password -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss21.0.png" alt="Showing Menu Screen" width="800" />
@@ -96,9 +96,9 @@ Below pages changes pharmacy details including password -
 </p>
 
 
-####10. FORGOT PASSWORD
+#### 10) FORGOT PASSWORD
 Below page change password from login page with validation -
 <p align="center">
   <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss24.0.png" alt="Forget Password Screen 1" width="800" />
-  <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss.25png" alt="Forget Password Screen 2" width="800" />
+  <img src="https://github.com/ksp1998/Pharmacy-Management/blob/master/images/screen-shots/ss25.0.png" alt="Forget Password Screen 2" width="800" />
 </p>
