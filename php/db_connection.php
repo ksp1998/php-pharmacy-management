@@ -11,8 +11,8 @@
   if(isset($_GET['action']) && $_GET['action'] == 'is_logged_in') {
     $query = "SELECT IS_LOGGED_IN FROM admin_credentials";
     $result = mysqli_query($con, $query);
-    if($result) {
-      $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_array($result);
+    if($row) {
       echo $row['IS_LOGGED_IN'];
     }
     else

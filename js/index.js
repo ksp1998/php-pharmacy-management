@@ -87,7 +87,7 @@ function isSetupDone() {
   xhttp.open("GET", "php/validateCredentials.php?action=is_setup_done", false);
   xhttp.send();
   if(xhttp.responseText == "true")
-    window.location.href = "http://localhost/Pharmacy-Management/login.php";
+    window.location.href = "http://localhost/Pharmacy-Management/index.php";
 }
 
 function displayForgotPasswordForm() {
